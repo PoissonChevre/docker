@@ -85,15 +85,20 @@ docker container stats
 Docker provides several types of network interfaces for connecting containers to each other or to other network resources. Here are the 7 types, along with a brief explanation and the command to create each:
 
 1. **Default Bridge**: The default network driver when you start a container. It allows containers on the same host to communicate with each other. This network is isolated from the rest of the local network.
-2. **Custom Bridge**
+2. **Custom Bridge**: User-defined bridges provide better isolation & provide automatic DNS resolution between containers. Containers can be attached and detached from user-defined networks on the fly.
 3. **Host** : Remove network isolation between the container and the Docker host. The container shares the network interface of the host, meaning it doesn’t have its own network space but uses the host’s directly.
-4. **None** : Disables networking for the container. Useful if you don’t want the container to have network access.  
-5. **Overlay** : Connects containers across multiple Docker hosts, typically used in a Docker Swarm cluster. It allows containers on different hosts to communicate as if they were on the same local network.  
-6. **MacVlan** : Assigns a unique MAC address to each container, making them appear as separate physical devices on the network. Containers can communicate directly with the host’s physical network.  
+4. **MacVlan** : Assigns a unique MAC address to each container, making them appear as separate physical devices on the network. Containers can communicate directly with the host’s physical network.  
 ![MacVlan](./MacVlan.png)  
-7. **IPvlan**: Similar to macvlan, but containers share the MAC address of the host's main network interface. This can simplify network configuration.
-Ipvlan supports L2 and L3 mode. In ipvlan l2 mode, each endpoint gets the same mac address but different ip address. In ipvlan l3 mode, packets are routed between endpoints, so this gives better scalability.
+5. **IPvlan**: Similar to macvlan, but containers share the MAC address of the host's main network interface. This can simplify network configuration.
+Ipvlan supports L2 and L3 mode. In ipvlan l2 mode, each endpoint gets the same mac address but different ip address. In ipvlan l3 mode, packets are routed between endpoints, so this gives better scalability. So a single mac address of host can have 20 different IP ,one for each device , it solves the Promiscuous issue -ie it wouldn’t allow multiple connections to a single port in a switch, which was a major drawback for MACVLAN network.
 ![IpVlan](./IpVlan.png)  
+6. **None** : Disables networking for the container. Useful if you don’t want the container to have network access.  
+7. **Overlay** : Connects containers across multiple Docker hosts, typically used in a Docker Swarm cluster. It allows containers on different hosts to communicate as if they were on the same local network.  
+
+### MACVLAN mode vs IPVLAN
+
+IPVLAN should be used in cases where some switches restrict the maximum number of mac address per physical port due to port security configuration.
+MACVLAN needs to be used in cases where common DHCP server is used since DHCP server would need unique mac address which IPVLAN does not have.
 
 **To list networking interfaces:**  
 docker network ls  
@@ -104,14 +109,39 @@ docker network create -d bridge my-net
 docker run -itd --rm --network=my-net  -p 8080:80  --name container-name nginx  
 *-dit flags mean to start the container detached (in the background), interactive (with the ability to type into it), and with a TTY (so you can see the input and output)*
 *--rm flags remove the container when stopped*
-*-p flags host:container*  
+*-p flags host:container (only in bridged mode)*  
+**To connect & disconnect a running container to an existing user-defined bridge**  
+docker network connect my-net my-nginx  
+docker network disconnect my-net my-nginx  
 **To create a MacVlan network**  
-sudo docker network create -d macvlan \
---subnet X.X.X.X/X \
+docker network create -d macvlan \
+--subnet X.X.X.X/X \  
+--gateway X.X.X.X \  
+-o parent=enps03 \  
+--ip-range X.X.X.X/X \  (or define the ip  when creating the container with the flag --ip X.X.X.X)
+"name of network"  
+docker run -itd --rm --network=my-macvlan-net  (--ip X.X.X.X) --name container-name nginx
+**To create a MacVlan network (802.1q trunk bridge mode )**  
+docker network create -d macvlan \
+--subnet X.X.X.X/X \  
+--gateway X.X.X.X \  
+-o parent=enps03.20 \  
+--ip-range X.X.X.X/X \  (or define the ip  when creating the container with the flag --ip X.X.X.X)
+"name of network"  
+*The IEEE’s 802.1Q standard was developed to address the problem of how to break large networks into smaller parts so broadcast and multicast traffic wouldn’t grab more bandwidth than necessary. The same concept is used in the docker network so that it can be controlled at a much smaller level.If you specify a parent interface name with a dot included, such as eenps03.20, Docker interprets that as a sub-interface of eth0 and creates the sub-interface automatically*  
+**To create a IpVlan L2 network**  
+docker network create -d ipvlan \  
+--subnet X.X.X.X/X \  
 --gateway X.X.X.X \
--o parent=enps03 \
---ip-range X.X.X.X/X \
-
-# (-d for driver)
+-o parent=enp0s3 \  
+"name of network"  
+**To create a IpVlan L3 network**  
+docker network create -d ipvlan \  
+--subnet X.X.X.X/X \  
+--gateway X.X.X.X \
+-o parent=enp0s3 -o ipvlan_mode=l3\  
+"name of network"  
+**To create a Host network**  
+docker run -itd --rm --network=host --name container-name  
 **To remove a network interface**  
 docker network rm my-net  
