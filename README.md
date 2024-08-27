@@ -18,4 +18,8 @@ Ce tutoriel a pour but d'introduire Docker et de fournir une expérience pratiqu
 
 ## Ressources
 
-### [Github Repository](https://github.com/prakhar1989/docker-curriculum)
+### [Github Code Repository](https://github.com/prakhar1989/docker-curriculum)
+
+### [Docker Cheat Sheet](https://spacelift.io/blog/docker-commands-cheat-sheet)
+
+### [Docker Cheat Sheet](https://spacelift.io/blog/docker-commands-cheat-sheet)
