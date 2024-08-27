@@ -26,8 +26,12 @@ Ce tutoriel a pour but d'introduire Docker et de fournir une expérience pratiqu
 
 ### [NetworkChuck: Docker networking is CRAZY!!](https://www.youtube.com/watch?v=bKFMS5C4CG0)
 
+### [Christian Lempa: Docker Networking Tutorial, ALL Network Types explained!](https://www.youtube.com/watch?v=5grbXvV_DSk)
+
 ### [TechWorld with Nana: Docker Crash Course for Absolute Beginners (1 hour)](https://www.youtube.com/watch?v=pg19Z8LL06w)
 
 ### [TechWorld with Nana: Docker Tutorial for Beginners (3 hours)](https://www.youtube.com/watch?v=3c-iBn73dDE)
 
 ### [TechWorld with Nana: Ultimate Docker Compose Tutorial](https://www.youtube.com/watch?v=SXwC9fSwct8&t=1831s)
+
+### [Docker Desktop WSL 2 backend on Windows](https://docs.docker.com/desktop/wsl/) 
