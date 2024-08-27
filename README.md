@@ -18,8 +18,16 @@ Ce tutoriel a pour but d'introduire Docker et de fournir une expérience pratiqu
 
 ## Ressources
 
-### [Github Code Repository](https://github.com/prakhar1989/docker-curriculum)
+### [Github Code Repository for this tutorial](https://github.com/prakhar1989/docker-curriculum)
 
 ### [Docker Cheat Sheet](https://spacelift.io/blog/docker-commands-cheat-sheet)
 
-### [Docker Cheat Sheet](https://spacelift.io/blog/docker-commands-cheat-sheet)
+### [Docker Cheat Sheet Github](https://github.com/wsargent/docker-cheat-sheet)
+
+### [NetworkChuck: Docker networking is CRAZY!!](https://www.youtube.com/watch?v=bKFMS5C4CG0)
+
+### [TechWorld with Nana: Docker Crash Course for Absolute Beginners (1 hour)](https://www.youtube.com/watch?v=pg19Z8LL06w)
+
+### [TechWorld with Nana: Docker Tutorial for Beginners (3 hours)](https://www.youtube.com/watch?v=3c-iBn73dDE)
+
+### [TechWorld with Nana: Ultimate Docker Compose Tutorial](https://www.youtube.com/watch?v=SXwC9fSwct8&t=1831s)
