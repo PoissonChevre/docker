@@ -34,4 +34,6 @@ Ce tutoriel a pour but d'introduire Docker et de fournir une expérience pratiqu
 
 ### [TechWorld with Nana: Ultimate Docker Compose Tutorial](https://www.youtube.com/watch?v=SXwC9fSwct8&t=1831s)
 
-### [Docker Desktop WSL 2 backend on Windows](https://docs.docker.com/desktop/wsl/) 
+### [Docker Desktop WSL 2 backend on Windows](https://docs.docker.com/desktop/wsl/)  
+
+### [Medium: Docker Network - Part 2](https://linumary.medium.com/docker-network-part-2-5d02e4e95ac6)

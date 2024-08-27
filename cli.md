@@ -84,22 +84,34 @@ docker container stats
 
 Docker provides several types of network interfaces for connecting containers to each other or to other network resources. Here are the 7 types, along with a brief explanation and the command to create each:
 
-1. **Bridge**: The default network driver when you start a container. It allows containers on the same host to communicate with each other. This network is isolated from the rest of the local network.
-2. **Host** : Remove network isolation between the container and the Docker host. The container shares the network interface of the host, meaning it doesn’t have its own network space but uses the host’s directly.
-3. **None** : Disables networking for the container. Useful if you don’t want the container to have network access.  
-4. **Overlay** : Connects containers across multiple Docker hosts, typically used in a Docker Swarm cluster. It allows containers on different hosts to communicate as if they were on the same local network.  
-5. **Macvlan** : Assigns a unique MAC address to each container, making them appear as separate physical devices on the network. Containers can communicate directly with the host’s physical network.  
-6. **IPvlan**: Similar to macvlan, but containers share the MAC address of the host's main network interface. This can simplify network configuration.  
-7. **Network Plugins** : Allows the use of third-party network plugins for advanced custom network configurations. The type of network and commands vary depending on the plugin.
+1. **Default Bridge**: The default network driver when you start a container. It allows containers on the same host to communicate with each other. This network is isolated from the rest of the local network.
+2. **Custom Bridge**
+3. **Host** : Remove network isolation between the container and the Docker host. The container shares the network interface of the host, meaning it doesn’t have its own network space but uses the host’s directly.
+4. **None** : Disables networking for the container. Useful if you don’t want the container to have network access.  
+5. **Overlay** : Connects containers across multiple Docker hosts, typically used in a Docker Swarm cluster. It allows containers on different hosts to communicate as if they were on the same local network.  
+6. **MacVlan** : Assigns a unique MAC address to each container, making them appear as separate physical devices on the network. Containers can communicate directly with the host’s physical network.  
+![MacVlan](./MacVlan.png)  
+7. **IPvlan**: Similar to macvlan, but containers share the MAC address of the host's main network interface. This can simplify network configuration.
+Ipvlan supports L2 and L3 mode. In ipvlan l2 mode, each endpoint gets the same mac address but different ip address. In ipvlan l3 mode, packets are routed between endpoints, so this gives better scalability.
+![IpVlan](./IpVlan.png)  
 
 **To list networking interfaces:**  
-docker network ls
-**To create an interface bridge**
-docker network create my-net ()
-docker network create -d bridge my-net
-docker run -itd --rm --network=my-net  -p --name=container-name busybox
+docker network ls  
+**To create a custom bridge network**  
+docker network create my-net  
+docker network create -d bridge my-net  
+*-d flag tells Docker to use the bridge driver for the new network. You could have left this flag off as bridge is the default value for this flag.*  
+docker run -itd --rm --network=my-net  -p 8080:80  --name container-name nginx  
 *-dit flags mean to start the container detached (in the background), interactive (with the ability to type into it), and with a TTY (so you can see the input and output)*
 *--rm flags remove the container when stopped*
+*-p flags host:container*  
+**To create a MacVlan network**  
+sudo docker network create -d macvlan \
+--subnet X.X.X.X/X \
+--gateway X.X.X.X \
+-o parent=enps03 \
+--ip-range X.X.X.X/X \
+
+# (-d for driver)
 **To remove a network interface**  
 docker network rm my-net  
-
