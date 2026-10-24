@@ -23,6 +23,12 @@ A free, hands-on tutorial: run containers, build images, deploy web apps, then r
 
 My commands, networking notes and templates (Dockerfile, Compose) are in my cheat sheets: [devops_cheat_sheets/docker](https://github.com/PoissonChevre/devops_cheat_sheets/tree/main/docker)
 
+## Takeaways
+
+- A clear, free introduction: from a first `docker run` to a multi-container app.
+- Build my own images with a Dockerfile, and run several containers together with Docker Compose.
+- Containers share the host kernel: lighter and faster to start than virtual machines.
+
 ## Resources
 
 **Official docs**
