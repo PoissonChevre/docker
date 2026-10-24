@@ -21,7 +21,7 @@ A free, hands-on tutorial: run containers, build images, deploy web apps, then r
 
 ## My notes
 
-My commands, networking notes and templates (Dockerfile, Compose) are in my cheat sheets: [devops_cheat_sheets/docker](https://github.com/PoissonChevre/devops_cheat_sheets/tree/main/docker)
+My commands, networking notes and templates (Dockerfile, Compose) are in my cheat sheets: [cheatsheets/docker](https://github.com/PoissonChevre/cheatsheets/tree/main/docker)
 
 ## Takeaways
 
