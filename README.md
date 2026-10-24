@@ -1,39 +1,43 @@
-# Docker : [Learn to build and deploy your distributed applications easily to the cloud with Docker](https://docker-curriculum.com/)
+# Docker for Beginners — docker-curriculum.com
 
-## Qu'est-ce que Docker ?
+[Tutorial](https://docker-curriculum.com/) · **Author:** Prakhar Srivastav · **Status:** completed (2024) · [Tutorial code (GitHub)](https://github.com/prakhar1989/docker-curriculum)
 
-Docker est un outil open-source qui permet de déployer des applications dans des environnements isolés appelés conteneurs. Ces conteneurs fonctionnent sur le système d'exploitation hôte, généralement Linux, et regroupent une application avec toutes ses dépendances, ce qui facilite le déploiement et la portabilité des applications.
+## About
 
-## Avantages des Conteneurs
+A free, hands-on tutorial: run containers, build images, deploy web apps, then run a multi-container app with Docker Compose. It also deploys the apps to AWS.
 
-Contrairement aux machines virtuelles (VMs), les conteneurs n'exigent pas la virtualisation d'un système d'exploitation complet, ce qui les rend plus efficaces en termes de ressources. Ils offrent une isolation similaire aux VMs, mais avec moins de coûts en puissance de calcul, permettant ainsi une utilisation plus efficace des infrastructures.
+**Docker** packages an app with all its dependencies into a **container**. A container shares the kernel of the host (usually Linux), so it is much lighter than a virtual machine but still isolated. The same container runs the same way on a laptop, in a data center or in the cloud.
 
-## Pourquoi Utiliser Docker ?
+## Course content
 
-Les conteneurs permettent de déployer des applications de manière cohérente, peu importe l'environnement cible, que ce soit un centre de données privé, le cloud public ou un ordinateur personnel. Docker est devenu un standard dans l'industrie, adopté par des entreprises comme Google et Netflix pour optimiser l'utilisation des ressources et améliorer la productivité des équipes d'ingénierie.
+| # | Section | Topics |
+|---|---|---|
+| 1 | Introduction | What containers are, containers vs virtual machines |
+| 2 | Getting Started | Install Docker |
+| 3 | Hello World | Run a first container (busybox), `docker run`, `docker ps` |
+| 4 | Webapps with Docker | Static website, images, Dockerfile, deploy to AWS Elastic Beanstalk |
+| 5 | Multi Container Environments | App + database, Docker networks, Docker Compose, deploy to AWS ECS |
+| 6 | Conclusion | Next steps |
 
-## Objectif du Tutoriel
+## My notes
 
-Ce tutoriel a pour but d'introduire Docker et de fournir une expérience pratique en déployant des applications web sur le Cloud, en utilisant des services comme Amazon Web Services (AWS).
+My commands, networking notes and templates (Dockerfile, Compose) are in my cheat sheets: [devops_cheat_sheets/docker](https://github.com/PoissonChevre/devops_cheat_sheets/tree/main/docker)
 
-## Ressources
+## Resources
 
-### [Github Code Repository for this tutorial](https://github.com/prakhar1989/docker-curriculum)
+**Official docs**
 
-### [Docker Cheat Sheet](https://spacelift.io/blog/docker-commands-cheat-sheet)
+- [Docker documentation](https://docs.docker.com/)
+- [Docker Desktop with the WSL 2 backend (Windows)](https://docs.docker.com/desktop/wsl/)
 
-### [Docker Cheat Sheet Github](https://github.com/wsargent/docker-cheat-sheet)
+**Videos**
 
-### [NetworkChuck: Docker networking is CRAZY!!](https://www.youtube.com/watch?v=bKFMS5C4CG0)
+- TechWorld with Nana: [Docker Crash Course (1 hour)](https://www.youtube.com/watch?v=pg19Z8LL06w) · [Docker Tutorial for Beginners (3 hours)](https://www.youtube.com/watch?v=3c-iBn73dDE) · [Ultimate Docker Compose Tutorial](https://www.youtube.com/watch?v=SXwC9fSwct8)
+- NetworkChuck: [Docker networking is CRAZY!!](https://www.youtube.com/watch?v=bKFMS5C4CG0)
+- Christian Lempa: [Docker Networking Tutorial, all network types explained](https://www.youtube.com/watch?v=5grbXvV_DSk)
 
-### [Christian Lempa: Docker Networking Tutorial, ALL Network Types explained!](https://www.youtube.com/watch?v=5grbXvV_DSk)
+**Cheat sheets and articles**
 
-### [TechWorld with Nana: Docker Crash Course for Absolute Beginners (1 hour)](https://www.youtube.com/watch?v=pg19Z8LL06w)
-
-### [TechWorld with Nana: Docker Tutorial for Beginners (3 hours)](https://www.youtube.com/watch?v=3c-iBn73dDE)
-
-### [TechWorld with Nana: Ultimate Docker Compose Tutorial](https://www.youtube.com/watch?v=SXwC9fSwct8&t=1831s)
-
-### [Docker Desktop WSL 2 backend on Windows](https://docs.docker.com/desktop/wsl/)  
-
-### [Medium: Docker Network - Part 2](https://linumary.medium.com/docker-network-part-2-5d02e4e95ac6)
+- [Docker commands cheat sheet (Spacelift)](https://spacelift.io/blog/docker-commands-cheat-sheet)
+- [Docker cheat sheet (GitHub)](https://github.com/wsargent/docker-cheat-sheet)
+- [Docker Network, Part 2 (Medium)](https://linumary.medium.com/docker-network-part-2-5d02e4e95ac6)
